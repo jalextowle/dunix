@@ -1,10 +1,29 @@
 #!/usr/bin/env node
+const fs = require('fs-extra')
+
+function usage() { 
+  console.log('usage: dunix [init]') 
+  console.log('       dunix [head] new_head')
+}
 
 if (process.argv.length > 2) {
   switch (process.argv[2]) {
     case 'init': 
       require('./init/init.js')()
       break
+    case 'head':
+      if (process.argv.length != 3) {
+        fs.readFile('./.dunix/head', (error, contents) => {
+          console.log(`head directory: ${contents}`)
+        })
+        break
+      } else {
+        // FIXME - Ensure that the provided input is a valid ipfs hash that exists within this filesystem
+        fs.writeFile('./.dunix/head', process.argv[3], (error) => { if (error) console.log(error) })
+        break
+      }
+    default:
+      usage()
   }
 } else {
   require('./shell/shell.js')

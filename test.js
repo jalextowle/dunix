@@ -1,0 +1,5 @@
+console.log('hello'.trim().split(/\s+/))
+console.log(' hello'.trim().split(/\s+/))
+console.log(' hello '.trim().split(/\s+/))
+console.log(' hello there'.trim().split(/\s+/))
+console.log(' hello  there'.trim().split(/\s+/))
