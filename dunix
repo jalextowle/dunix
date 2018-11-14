@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+if (process.argv.length > 2) {
+  switch (process.argv[2]) {
+    case 'init': 
+      require('./init/init.js')()
+      break
+  }
+} else {
+  require('./shell/shell.js')
+}
+
